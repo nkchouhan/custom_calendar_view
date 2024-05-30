@@ -14,6 +14,11 @@ class WeekViewWidget extends StatelessWidget {
     return WeekView(
       key: state,
       width: width,
+      weekPageHeaderBuilder: WeekHeader.hidden,
+      startDay: WeekDays.sunday,
+      primaryColor: Colors.amberAccent,
+      secondaryColor: Colors.white,
+      weekNumberBuilder: (e)=>Container(color: Colors.transparent),
       showLiveTimeLineInAllDays: true,
       timeLineWidth: 65,
       liveTimeIndicatorSettings: LiveTimeIndicatorSettings(

@@ -141,6 +141,8 @@ class WeekView<T extends Object?> extends StatefulWidget {
 
   /// Background color of week view page.
   final Color backgroundColor;
+  final Color primaryColor;
+  final Color secondaryColor;
 
   /// Scroll offset of week view page.
   final double scrollOffset;
@@ -269,6 +271,8 @@ class WeekView<T extends Object?> extends StatefulWidget {
     this.weekDayBuilder,
     this.weekNumberBuilder,
     this.backgroundColor = Colors.white,
+    this.primaryColor = Colors.white,
+    this.secondaryColor = Colors.white,
     this.scrollOffset = 0.0,
     this.onEventTap,
     this.onEventLongTap,
@@ -490,7 +494,10 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
               ),
               Expanded(
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: widget.backgroundColor),
+                  decoration: BoxDecoration(
+                    color: widget.primaryColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: SizedBox(
                     height: _height,
                     width: _width,
@@ -507,6 +514,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
                         return ValueListenableBuilder(
                           valueListenable: _scrollConfiguration,
                           builder: (_, __, ___) => InternalWeekViewPage<T>(
+                            secondaryColor: widget.secondaryColor,
                             key: ValueKey(
                                 _hourHeight.toString() + dates[0].toString()),
                             height: _height,
