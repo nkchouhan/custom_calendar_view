@@ -19,6 +19,10 @@ class MonthViewWidget extends StatelessWidget {
       key: state,
       width: width,
       hideDaysNotInMonth: false,
+      headerBuilder: (e)=>Container(color: Colors.transparent),
+      primaryColor: Colors.amberAccent,
+      secondaryColor: Colors.white,
+      startDay: WeekDays.sunday,
       onEventTap: (event, date) {
         Navigator.of(context).push(
           MaterialPageRoute(

@@ -496,7 +496,10 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: widget.primaryColor,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
                   ),
                   child: SizedBox(
                     height: _height,

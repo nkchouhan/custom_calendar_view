@@ -277,18 +277,14 @@ class _InternalWeekViewPageState<T extends Object?>
               ],
             ),
           ),
-          Divider(
-            thickness: 1,
-            height: 1,
-          ),
           SizedBox(
             width: widget.width,
             child: Container(
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: widget.hourIndicatorSettings.color,
-                    width: 2,
+                    color: Colors.transparent,
+                    width: 0,
                   ),
                 ),
               ),
@@ -339,7 +335,10 @@ class _InternalWeekViewPageState<T extends Object?>
             child: Container(
               decoration: BoxDecoration(
                 color: widget.secondaryColor,
-                borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
               ),
               child: SingleChildScrollView(
                 controller: widget.keepScrollOffset

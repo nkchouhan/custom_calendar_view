@@ -102,6 +102,8 @@ class MonthView<T extends Object?> extends StatefulWidget {
   ///
   /// It will take affect only if [showBorder] is set.
   final Color borderColor;
+  final Color primaryColor;
+  final Color secondaryColor;
 
   /// Page transition duration used when user try to change page using
   /// [MonthView.nextPage] or [MonthView.previousPage]
@@ -179,6 +181,8 @@ class MonthView<T extends Object?> extends StatefulWidget {
     this.minMonth,
     this.maxMonth,
     this.controller,
+    required this.primaryColor,
+    required this.secondaryColor,
     this.initialMonth,
     this.borderSize = 1,
     this.useAvailableVerticalSpace = false,

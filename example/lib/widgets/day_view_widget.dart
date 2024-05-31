@@ -21,6 +21,8 @@ class DayViewWidget extends StatelessWidget {
       startDuration: Duration(hours: 8),
       showHalfHours: true,
       heightPerMinute: 3,
+      primaryColor: Colors.amberAccent,
+      secondaryColor: Colors.white,
       timeLineBuilder: _timeLineBuilder,
       hourIndicatorSettings: HourIndicatorSettings(
         color: Theme.of(context).dividerColor,
