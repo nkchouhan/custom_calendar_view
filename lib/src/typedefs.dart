@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../calendar_view.dart';
+import '../custom_calendar_view.dart';
 
 typedef CellBuilder<T extends Object?> = Widget Function(
   DateTime date,

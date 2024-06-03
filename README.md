@@ -35,7 +35,7 @@ visit [Calendar View Example](https://simformsolutionspvtltd.github.io/flutter_c
 3. Import package.
 
     ```dart
-    import 'package:calendar_view/calendar_view.dart';
+    import 'package:calendar_view/custom_calendar_view.dart';
     ```
 
 ## Implementation
