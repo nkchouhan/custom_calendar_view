@@ -443,7 +443,13 @@ class DayViewState<T extends Object?> extends State<DayView<T>> {
         _width = widget.width ?? constraint.maxWidth;
         _updateViewDimensions();
         return Container(
-          color: widget.primaryColor,
+          decoration: BoxDecoration(
+            color: widget.primaryColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
           child: SizedBox(
             width: _width,
             child: Column(

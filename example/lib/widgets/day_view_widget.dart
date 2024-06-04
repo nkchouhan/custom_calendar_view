@@ -46,6 +46,14 @@ class DayViewWidget extends StatelessWidget {
       ),
       verticalLineOffset: 0,
       timeLineWidth: 65,
+      headerStyle: HeaderStyle(
+          decoration: BoxDecoration(
+            color: Colors.amber,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      )),
       showLiveTimeLineInAllDays: true,
       liveTimeIndicatorSettings: LiveTimeIndicatorSettings(
         color: Colors.redAccent,
