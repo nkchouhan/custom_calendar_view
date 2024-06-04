@@ -19,7 +19,7 @@ class MonthViewWidget extends StatelessWidget {
       key: state,
       width: width,
       hideDaysNotInMonth: false,
-      headerBuilder: (e)=>Container(color: Colors.transparent),
+     // headerBuilder: (e)=>Container(color: Colors.transparent),
       primaryColor: Colors.amberAccent,
       secondaryColor: Colors.white,
       startDay: WeekDays.sunday,
@@ -32,6 +32,14 @@ class MonthViewWidget extends StatelessWidget {
           ),
         );
       },
+      headerStyle: HeaderStyle(
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          )),
       onEventLongTap: (event, date) {
         SnackBar snackBar = SnackBar(content: Text("on LongTap"));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
