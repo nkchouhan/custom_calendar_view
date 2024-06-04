@@ -688,6 +688,7 @@ class DayViewState<T extends Object?> extends State<DayView<T>> {
         boundary: boundary,
         startDuration: startDuration,
         endDuration: endDuration,
+        isWeekView: false,
       );
 
   /// Default view header builder. This builder will be used if

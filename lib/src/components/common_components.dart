@@ -197,6 +197,7 @@ class DefaultEventTile<T> extends StatelessWidget {
     required this.boundary,
     required this.startDuration,
     required this.endDuration,
+    required this.isWeekView,
   });
 
   final DateTime date;
@@ -204,12 +205,14 @@ class DefaultEventTile<T> extends StatelessWidget {
   final Rect boundary;
   final DateTime startDuration;
   final DateTime endDuration;
+  final bool isWeekView;
 
   @override
   Widget build(BuildContext context) {
     if (events.isNotEmpty) {
       final event = events[0];
       return RoundedEventTile(
+          isWeekView:isWeekView,
         borderRadius: BorderRadius.circular(10.0),
         title: event.title,
         totalEvents: events.length - 1,

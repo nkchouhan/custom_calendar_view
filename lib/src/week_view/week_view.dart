@@ -811,6 +811,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
         boundary: boundary,
         startDuration: startDuration,
         endDuration: endDuration,
+        isWeekView: true,
       );
 
   /// Default view header builder. This builder will be used if

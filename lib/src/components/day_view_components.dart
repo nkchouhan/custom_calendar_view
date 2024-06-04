@@ -39,6 +39,7 @@ class RoundedEventTile extends StatelessWidget {
 
   /// Style for title
   final TextStyle? titleStyle;
+  final bool isWeekView;
 
   /// Style for description
   final TextStyle? descriptionStyle;
@@ -50,6 +51,7 @@ class RoundedEventTile extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
     this.description,
+    required this.isWeekView,
     this.borderRadius = BorderRadius.zero,
     this.totalEvents = 1,
     this.backgroundColor = Colors.blue,
@@ -76,7 +78,7 @@ class RoundedEventTile extends StatelessWidget {
                 title,
                 style: titleStyle ??
                     TextStyle(
-                      fontSize: 20,
+                      fontSize: isWeekView?10:20,
                       color: backgroundColor.accent,
                     ),
                 softWrap: true,
@@ -91,7 +93,7 @@ class RoundedEventTile extends StatelessWidget {
                   description!,
                   style: descriptionStyle ??
                       TextStyle(
-                        fontSize: 17,
+                        fontSize: isWeekView?7:17,
                         color: backgroundColor.accent.withAlpha(200),
                       ),
                 ),
