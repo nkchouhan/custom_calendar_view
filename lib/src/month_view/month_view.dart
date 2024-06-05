@@ -104,6 +104,7 @@ class MonthView<T extends Object?> extends StatefulWidget {
   final Color borderColor;
   final Color primaryColor;
   final Color secondaryColor;
+  final Color secondaryOffsetColor;
 
   /// Page transition duration used when user try to change page using
   /// [MonthView.nextPage] or [MonthView.previousPage]
@@ -183,6 +184,7 @@ class MonthView<T extends Object?> extends StatefulWidget {
     this.controller,
     required this.primaryColor,
     required this.secondaryColor,
+    required this.secondaryOffsetColor,
     this.initialMonth,
     this.borderSize = 1,
     this.useAvailableVerticalSpace = false,
@@ -326,82 +328,109 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
   Widget build(BuildContext context) {
     return SafeAreaWrapper(
       option: widget.safeAreaOption,
-      child: SizedBox(
-        width: _width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: _width,
-              child: _headerBuilder(_currentDate),
-            ),
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                physics: widget.pageViewPhysics,
-                onPageChanged: _onPageChange,
-                itemBuilder: (_, index) {
-                  final date = DateTime(_minDate.year, _minDate.month + index);
-                  final weekDays = date.datesOfWeek(start: widget.startDay);
+      child: Container(
+        decoration: BoxDecoration(
+          color: widget.primaryColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: SizedBox(
+          width: _width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: _width,
+                child: _headerBuilder(_currentDate),
+              ),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color:widget.secondaryColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
 
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: _width,
-                        child: Row(
-                          children: List.generate(
-                            7,
-                            (index) => Expanded(
-                              child: SizedBox(
-                                width: _cellWidth,
-                                child:
-                                    _weekBuilder(weekDays[index].weekday - 1),
+                  child: PageView.builder(
+                    controller: _pageController,
+                    physics: widget.pageViewPhysics,
+                    onPageChanged: _onPageChange,
+                    itemBuilder: (_, index) {
+                      final date = DateTime(_minDate.year, _minDate.month + index);
+                      final weekDays = date.datesOfWeek(start: widget.startDay);
+
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: _width,
+                            decoration: BoxDecoration(
+                              color:widget.secondaryColor,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                            ),
+
+                            child: Row(
+                              children: List.generate(
+                                7,
+                                (index) => Expanded(
+                                  child: SizedBox(
+                                    width: _cellWidth,
+                                    child:
+                                        _weekBuilder(weekDays[index].weekday - 1),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        child: LayoutBuilder(builder: (context, constraints) {
-                          final _cellAspectRatio =
-                              widget.useAvailableVerticalSpace
-                                  ? calculateCellAspectRatio(
-                                      constraints.maxHeight,
-                                    )
-                                  : widget.cellAspectRatio;
+                          Expanded(
+                            child: LayoutBuilder(builder: (context, constraints) {
+                              final _cellAspectRatio =
+                                  widget.useAvailableVerticalSpace
+                                      ? calculateCellAspectRatio(
+                                          constraints.maxHeight,
+                                        )
+                                      : widget.cellAspectRatio;
 
-                          return SizedBox(
-                            height: _height,
-                            width: _width,
-                            child: _MonthPageBuilder<T>(
-                              key: ValueKey(date.toIso8601String()),
-                              onCellTap: widget.onCellTap,
-                              onDateLongPress: widget.onDateLongPress,
-                              width: _width,
-                              height: _height,
-                              controller: controller,
-                              borderColor: widget.borderColor,
-                              borderSize: widget.borderSize,
-                              cellBuilder: _cellBuilder,
-                              cellRatio: _cellAspectRatio,
-                              date: date,
-                              showBorder: widget.showBorder,
-                              startDay: widget.startDay,
-                              physics: widget.pagePhysics,
-                              hideDaysNotInMonth: widget.hideDaysNotInMonth,
-                            ),
-                          );
-                        }),
-                      ),
-                    ],
-                  );
-                },
-                itemCount: _totalMonths,
+                              return SizedBox(
+                                height: _height,
+                                width: _width,
+                                child: _MonthPageBuilder<T>(
+                                  key: ValueKey(date.toIso8601String()),
+                                  onCellTap: widget.onCellTap,
+                                  onDateLongPress: widget.onDateLongPress,
+                                  width: _width,
+                                  height: _height,
+                                  controller: controller,
+                                  borderColor: widget.borderColor,
+                                  borderSize: widget.borderSize,
+                                  cellBuilder: _cellBuilder,
+                                  cellRatio: _cellAspectRatio,
+                                  date: date,
+                                  showBorder: widget.showBorder,
+                                  startDay: widget.startDay,
+                                  physics: widget.pagePhysics,
+                                  hideDaysNotInMonth: widget.hideDaysNotInMonth,
+                                ),
+                              );
+                            }),
+                          ),
+                        ],
+                      );
+                    },
+                    itemCount: _totalMonths,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -536,6 +565,7 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
   Widget _defaultWeekDayBuilder(int index) {
     return WeekDayTile(
       dayIndex: index,
+      backgroundColor: Colors.transparent,
       weekDayStringBuilder: widget.weekDayStringBuilder,
       displayBorder: widget.showWeekTileBorder,
     );
@@ -553,7 +583,7 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
       return FilledCell<T>(
         date: date,
         shouldHighlight: isToday,
-        backgroundColor: isInMonth ? Constants.white : Constants.offWhite,
+        backgroundColor: isInMonth ? widget.secondaryColor : widget.secondaryOffsetColor,
         events: events,
         isInMonth: isInMonth,
         onTileTap: widget.onEventTap,
@@ -564,7 +594,7 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
     return FilledCell<T>(
       date: date,
       shouldHighlight: isToday,
-      backgroundColor: isInMonth ? Constants.white : Constants.offWhite,
+      backgroundColor: isInMonth ? widget.secondaryColor : widget.secondaryOffsetColor,
       events: events,
       onTileTap: widget.onEventTap,
       onTileLongTap: widget.onEventLongTap,

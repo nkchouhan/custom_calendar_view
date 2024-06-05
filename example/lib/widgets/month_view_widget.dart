@@ -21,7 +21,8 @@ class MonthViewWidget extends StatelessWidget {
       hideDaysNotInMonth: false,
      // headerBuilder: (e)=>Container(color: Colors.transparent),
       primaryColor: Colors.amberAccent,
-      secondaryColor: Colors.white,
+      secondaryColor: Colors.yellowAccent.shade400,
+      secondaryOffsetColor: Colors.yellow.shade900,
       startDay: WeekDays.sunday,
       onEventTap: (event, date) {
         Navigator.of(context).push(
@@ -34,7 +35,6 @@ class MonthViewWidget extends StatelessWidget {
       },
       headerStyle: HeaderStyle(
           decoration: BoxDecoration(
-            color: Colors.amber,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
