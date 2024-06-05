@@ -1,6 +1,6 @@
 name: custom_calendar_view
 description: A Flutter package allows you to easily implement all calendar UI and calendar event functionality.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/nkchouhan/custom_calendar_view.git
 
 environment:
