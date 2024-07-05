@@ -1,3 +1,6 @@
+## 0.0.4
+- month view fixed
+- 
 ## 0.0.3
 - month view fixed
 
