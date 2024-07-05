@@ -194,6 +194,8 @@ class DefaultEventTile<T> extends StatelessWidget {
   const DefaultEventTile({
     required this.date,
     required this.events,
+    required this.primaryColor,
+    required this.isSmall,
     required this.boundary,
     required this.startDuration,
     required this.endDuration,
@@ -201,8 +203,10 @@ class DefaultEventTile<T> extends StatelessWidget {
   });
 
   final DateTime date;
+  final bool isSmall;
   final List<CalendarEventData<T>> events;
   final Rect boundary;
+  final Color primaryColor;
   final DateTime startDuration;
   final DateTime endDuration;
   final bool isWeekView;
@@ -213,7 +217,10 @@ class DefaultEventTile<T> extends StatelessWidget {
       final event = events[0];
       return RoundedEventTile(
           isWeekView:isWeekView,
+        isSmall: isSmall,
+        primaryColor: primaryColor,
         borderRadius: BorderRadius.circular(10.0),
+        ownerEmail: event.ownerEmail,
         title: event.title,
         totalEvents: events.length - 1,
         description: event.description,

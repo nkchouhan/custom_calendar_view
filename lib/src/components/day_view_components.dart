@@ -16,6 +16,9 @@ import 'common_components.dart';
 class RoundedEventTile extends StatelessWidget {
   /// Title of the tile.
   final String title;
+  final String? ownerEmail;
+  final Color primaryColor;
+  final bool isSmall;
 
   /// Description of the tile.
   final String? description;
@@ -48,6 +51,9 @@ class RoundedEventTile extends StatelessWidget {
   const RoundedEventTile({
     Key? key,
     required this.title,
+    required this.isSmall,
+    this.ownerEmail,
+    required this.primaryColor,
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
     this.description,
@@ -68,50 +74,63 @@ class RoundedEventTile extends StatelessWidget {
         color: backgroundColor,
         borderRadius: borderRadius,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (title.isNotEmpty)
-            Expanded(
-              child: Text(
-                title,
-                style: titleStyle ??
-                    TextStyle(
-                      fontSize: isWeekView?10:20,
-                      color: backgroundColor.accent,
-                    ),
-                softWrap: true,
-                overflow: TextOverflow.fade,
-              ),
-            ),
-          if (description?.isNotEmpty ?? false)
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 15.0),
+      child: Stack(children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (title.isNotEmpty)
+              Expanded(
                 child: Text(
-                  description!,
-                  style: descriptionStyle ??
+                  title,
+                  style: titleStyle ??
                       TextStyle(
-                        fontSize: isWeekView?7:17,
-                        color: backgroundColor.accent.withAlpha(200),
+                        fontSize: isWeekView ? 10 : 20,
+                        color: backgroundColor.accent,
                       ),
+                  softWrap: true,
+                  overflow: TextOverflow.fade,
                 ),
               ),
-            ),
-          if (totalEvents > 1)
-            Expanded(
-              child: Text(
-                "+${totalEvents - 1} more",
-                style: (descriptionStyle ??
+            if (description?.isNotEmpty ?? false)
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0),
+                  child: Text(
+                    description!,
+                    style: descriptionStyle ??
                         TextStyle(
+                          fontSize: isWeekView ? 7 : 17,
                           color: backgroundColor.accent.withAlpha(200),
-                        ))
-                    .copyWith(fontSize: 17),
+                        ),
+                  ),
+                ),
               ),
-            ),
-        ],
-      ),
+            if (totalEvents > 1)
+              Expanded(
+                child: Text(
+                  "+${totalEvents - 1} more",
+                  style: (descriptionStyle ??
+                          TextStyle(
+                            color: backgroundColor.accent.withAlpha(200),
+                          ))
+                      .copyWith(fontSize: 17),
+                ),
+              ),
+          ],
+        ),
+        if (ownerEmail?.isNotEmpty ?? false)
+          Align(
+              alignment: Alignment.bottomRight,
+              child: CircleAvatar(
+                radius: isSmall ? 6 : 15,
+                backgroundColor: primaryColor,
+                child: Text(
+                  ownerEmail?[0].toUpperCase() ?? "",
+                  style: TextStyle(fontSize: isSmall ? 8 : 16),
+                ),
+              ))
+      ]),
     );
   }
 }

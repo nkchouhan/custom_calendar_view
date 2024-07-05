@@ -689,6 +689,8 @@ class DayViewState<T extends Object?> extends State<DayView<T>> {
     DateTime endDuration,
   ) =>
       DefaultEventTile(
+        isSmall: false,
+        primaryColor:widget.primaryColor!,
         date: date,
         events: events,
         boundary: boundary,

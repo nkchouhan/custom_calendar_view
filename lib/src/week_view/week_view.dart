@@ -806,7 +806,9 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
     DateTime endDuration,
   ) =>
       DefaultEventTile(
+        primaryColor:widget.primaryColor,
         date: date,
+        isSmall: true,
         events: events,
         boundary: boundary,
         startDuration: startDuration,

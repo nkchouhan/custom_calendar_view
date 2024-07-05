@@ -39,11 +39,13 @@ List<CalendarEventData> _events = [
     date: _now,
     title: "Project meeting",
     description: "Today is project meeting.",
+    ownerEmail: "Sushant",
     startTime: DateTime(_now.year, _now.month, _now.day, 18, 30),
     endTime: DateTime(_now.year, _now.month, _now.day, 22),
   ),
   CalendarEventData(
     date: _now.add(Duration(days: 1)),
+    ownerEmail: "Asasasd",
     startTime: DateTime(_now.year, _now.month, _now.day, 18),
     endTime: DateTime(_now.year, _now.month, _now.day, 19),
     title: "Wedding anniversary",
@@ -51,12 +53,14 @@ List<CalendarEventData> _events = [
   ),
   CalendarEventData(
     date: _now,
+    ownerEmail: "dfghdfgh",
     startTime: DateTime(_now.year, _now.month, _now.day, 14),
     endTime: DateTime(_now.year, _now.month, _now.day, 17),
     title: "Football Tournament",
     description: "Go to football tournament.",
   ),
   CalendarEventData(
+    ownerEmail: "asasdads",
     date: _now.add(Duration(days: 3)),
     startTime: DateTime(_now.add(Duration(days: 3)).year,
         _now.add(Duration(days: 3)).month, _now.add(Duration(days: 3)).day, 10),

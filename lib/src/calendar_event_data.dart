@@ -28,6 +28,7 @@ class CalendarEventData<T extends Object?> {
 
   /// Description of the event.
   final String? description;
+  final String? ownerEmail;
 
   /// Defines color of event.
   /// This color will be used in default widgets provided by plugin.
@@ -55,6 +56,7 @@ class CalendarEventData<T extends Object?> {
     this.endTime,
     this.titleStyle,
     this.descriptionStyle,
+    this.ownerEmail,
     DateTime? endDate,
   })  : _endDate = endDate?.withoutTime,
         date = date.withoutTime;
@@ -109,6 +111,7 @@ class CalendarEventData<T extends Object?> {
   CalendarEventData<T> copyWith({
     String? title,
     String? description,
+    String? ownerEmail,
     T? event,
     Color? color,
     DateTime? startTime,
@@ -120,6 +123,7 @@ class CalendarEventData<T extends Object?> {
   }) {
     return CalendarEventData(
       title: title ?? this.title,
+      ownerEmail: ownerEmail ?? this.ownerEmail,
       date: date ?? this.date,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
