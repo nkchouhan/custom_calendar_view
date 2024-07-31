@@ -1,3 +1,5 @@
+## 0.0.5
+- month view now have week header
 ## 0.0.4
 - month view fixed
 - 

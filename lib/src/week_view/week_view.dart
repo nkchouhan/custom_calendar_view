@@ -2,6 +2,7 @@
 // Use of this source code is governed by a MIT-style license
 // that can be found in the LICENSE file.
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../calendar_constants.dart';
@@ -492,6 +493,9 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
                 _currentStartDate,
                 _currentEndDate,
               ),
+              SizedBox(
+                height: 20,
+              ),
               Expanded(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -806,7 +810,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
     DateTime endDuration,
   ) =>
       DefaultEventTile(
-        primaryColor:widget.primaryColor,
+        primaryColor: widget.primaryColor,
         date: date,
         isSmall: true,
         events: events,
@@ -822,28 +826,54 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
     DateTime startDate,
     DateTime endDate,
   ) {
-    return WeekPageHeader(
-      startDate: _currentStartDate,
-      endDate: _currentEndDate,
-      onNextDay: nextPage,
-      onPreviousDay: previousPage,
-      onTitleTapped: () async {
-        if (widget.onHeaderTitleTap != null) {
-          widget.onHeaderTitleTap!(startDate);
-        } else {
-          final selectedDate = await showDatePicker(
-            context: context,
-            initialDate: startDate,
-            firstDate: _minDate,
-            lastDate: _maxDate,
-          );
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black,
+                width: 1.0,
+              ),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: WeekPageHeader(
+              startDate: _currentStartDate,
+              endDate: _currentEndDate,
+              onNextDay: nextPage,
+              onPreviousDay: previousPage,
+              onTitleTapped: () async {
+                if (widget.onHeaderTitleTap != null) {
+                  widget.onHeaderTitleTap!(startDate);
+                } else {
+                  final selectedDate = await showDatePicker(
+                    context: context,
+                    initialDate: startDate,
+                    firstDate: _minDate,
+                    lastDate: _maxDate,
+                  );
 
-          if (selectedDate == null) return;
-          jumpToWeek(selectedDate);
-        }
-      },
-      headerStringBuilder: widget.headerStringBuilder,
-      headerStyle: widget.headerStyle,
+                  if (selectedDate == null) return;
+                  jumpToWeek(selectedDate);
+                }
+              },
+              headerStringBuilder: widget.headerStringBuilder,
+              headerStyle: widget.headerStyle,
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(),
+        ),
+      ],
     );
   }
 

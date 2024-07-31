@@ -14,7 +14,7 @@ class WeekViewWidget extends StatelessWidget {
     return WeekView(
       key: state,
       width: width,
-      weekPageHeaderBuilder: WeekHeader.hidden,
+     // weekPageHeaderBuilder: WeekHeader.hidden,
       startDay: WeekDays.sunday,
       primaryColor: Colors.amberAccent,
       secondaryColor: Colors.white,
@@ -34,6 +34,7 @@ class WeekViewWidget extends StatelessWidget {
           ),
         );
       },
+      headerStyle: HeaderStyle(decoration:BoxDecoration(color: Colors.transparent)),
       onEventLongTap: (events, date) {
         SnackBar snackBar = SnackBar(content: Text("on LongTap"));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
