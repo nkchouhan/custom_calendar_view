@@ -1,3 +1,7 @@
+## 0.0.9
+- issue fixes
+## 0.0.8
+- issue fixes
 ## 0.0.7
 - issue fixes
 ## 0.0.6

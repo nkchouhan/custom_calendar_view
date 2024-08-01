@@ -493,9 +493,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
                 _currentStartDate,
                 _currentEndDate,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               Expanded(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -833,7 +831,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
           color: Colors.black,
           width: 1.0,
         ),
-        color: Colors.transparent,
+        color: Colors.white,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
@@ -845,6 +843,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
         startDate: _currentStartDate,
         endDate: _currentEndDate,
         onNextDay: nextPage,
+        backgroundColor: Colors.transparent,
         onPreviousDay: previousPage,
         onTitleTapped: () async {
           if (widget.onHeaderTitleTap != null) {
