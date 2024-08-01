@@ -17,7 +17,7 @@ class WeekViewWidget extends StatelessWidget {
      // weekPageHeaderBuilder: WeekHeader.hidden,
       startDay: WeekDays.sunday,
       primaryColor: Colors.amberAccent,
-      secondaryColor: Colors.white,
+      secondaryColor: Colors.green,
       weekNumberBuilder: (e)=>Container(color: Colors.transparent),
       showLiveTimeLineInAllDays: true,
       timeLineWidth: 65,

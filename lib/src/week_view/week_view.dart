@@ -826,54 +826,44 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
     DateTime startDate,
     DateTime endDate,
   ) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 3,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-                width: 1.0,
-              ),
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: WeekPageHeader(
-              startDate: _currentStartDate,
-              endDate: _currentEndDate,
-              onNextDay: nextPage,
-              onPreviousDay: previousPage,
-              onTitleTapped: () async {
-                if (widget.onHeaderTitleTap != null) {
-                  widget.onHeaderTitleTap!(startDate);
-                } else {
-                  final selectedDate = await showDatePicker(
-                    context: context,
-                    initialDate: startDate,
-                    firstDate: _minDate,
-                    lastDate: _maxDate,
-                  );
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 1.0,
+        ),
+        color: Colors.transparent,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: WeekPageHeader(
+        startDate: _currentStartDate,
+        endDate: _currentEndDate,
+        onNextDay: nextPage,
+        onPreviousDay: previousPage,
+        onTitleTapped: () async {
+          if (widget.onHeaderTitleTap != null) {
+            widget.onHeaderTitleTap!(startDate);
+          } else {
+            final selectedDate = await showDatePicker(
+              context: context,
+              initialDate: startDate,
+              firstDate: _minDate,
+              lastDate: _maxDate,
+            );
 
-                  if (selectedDate == null) return;
-                  jumpToWeek(selectedDate);
-                }
-              },
-              headerStringBuilder: widget.headerStringBuilder,
-              headerStyle: widget.headerStyle,
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(),
-        ),
-      ],
+            if (selectedDate == null) return;
+            jumpToWeek(selectedDate);
+          }
+        },
+        headerStringBuilder: widget.headerStringBuilder,
+        headerStyle: widget.headerStyle,
+      ),
     );
   }
 
