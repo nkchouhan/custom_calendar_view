@@ -230,6 +230,11 @@ class DayView<T extends Object?> extends StatefulWidget {
 
   /// Flag to keep scrollOffset of pages on page change
   final bool keepScrollOffset;
+  final double weekTitleFontSize;
+  final double monthTitleFontSize;
+  final double weekSubTitleFontSize;
+  final double monthSubTitleFontSize;
+
 
   /// Main widget for day view.
   const DayView({
@@ -283,6 +288,10 @@ class DayView<T extends Object?> extends StatefulWidget {
     this.onEventDoubleTap,
     this.endHour = Constants.hoursADay,
     this.keepScrollOffset = false,
+    required this.weekTitleFontSize ,
+    required this.monthTitleFontSize ,
+    required this.weekSubTitleFontSize ,
+    required this.monthSubTitleFontSize,
   })  : assert(!(onHeaderTitleTap != null && dayTitleBuilder != null),
             "can't use [onHeaderTitleTap] & [dayTitleBuilder] simultaneously"),
         assert(timeLineOffset >= 0,
@@ -697,6 +706,11 @@ class DayViewState<T extends Object?> extends State<DayView<T>> {
         startDuration: startDuration,
         endDuration: endDuration,
         isWeekView: false,
+        weekTitleFontSize:widget.weekTitleFontSize,
+        weekSubTitleFontSize: widget.weekSubTitleFontSize,
+        monthTitleFontSize:widget.monthTitleFontSize ,
+        monthSubTitleFontSize:widget.monthSubTitleFontSize ,
+
       );
 
   /// Default view header builder. This builder will be used if

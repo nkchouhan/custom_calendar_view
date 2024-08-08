@@ -30,6 +30,10 @@ class RoundedEventTile extends StatelessWidget {
   /// If same tile can have multiple events.
   /// In most cases this value will be 1 less than total events.
   final int totalEvents;
+  final double weekTitleFontSize;
+  final double monthTitleFontSize;
+  final double weekSubTitleFontSize;
+  final double monthSubTitleFontSize;
 
   /// Padding of the tile. Default padding is [EdgeInsets.zero]
   final EdgeInsets padding;
@@ -60,6 +64,10 @@ class RoundedEventTile extends StatelessWidget {
     required this.isWeekView,
     this.borderRadius = BorderRadius.zero,
     this.totalEvents = 1,
+    this.weekTitleFontSize = 10,
+    this.monthTitleFontSize = 20,
+    this.weekSubTitleFontSize = 7,
+    this.monthSubTitleFontSize = 17,
     this.backgroundColor = Colors.blue,
     this.titleStyle,
     this.descriptionStyle,
@@ -85,7 +93,7 @@ class RoundedEventTile extends StatelessWidget {
                   title,
                   style: titleStyle ??
                       TextStyle(
-                        fontSize: isWeekView ? 10 : 20,
+                        fontSize: isWeekView ? weekTitleFontSize : monthTitleFontSize,
                         color: backgroundColor.accent,
                       ),
                   softWrap: true,
@@ -100,7 +108,7 @@ class RoundedEventTile extends StatelessWidget {
                     description!,
                     style: descriptionStyle ??
                         TextStyle(
-                          fontSize: isWeekView ? 7 : 17,
+                          fontSize: isWeekView ?  weekSubTitleFontSize :  monthSubTitleFontSize,
                           color: backgroundColor.accent.withAlpha(200),
                         ),
                   ),

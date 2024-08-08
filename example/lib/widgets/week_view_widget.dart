@@ -14,11 +14,11 @@ class WeekViewWidget extends StatelessWidget {
     return WeekView(
       key: state,
       width: width,
-     // weekPageHeaderBuilder: WeekHeader.hidden,
+      // weekPageHeaderBuilder: WeekHeader.hidden,
       startDay: WeekDays.sunday,
       primaryColor: Colors.amberAccent,
       secondaryColor: Colors.green,
-      weekNumberBuilder: (e)=>Container(color: Colors.transparent),
+      weekNumberBuilder: (e) => Container(color: Colors.transparent),
       showLiveTimeLineInAllDays: true,
       timeLineWidth: 65,
       liveTimeIndicatorSettings: LiveTimeIndicatorSettings(
@@ -34,11 +34,16 @@ class WeekViewWidget extends StatelessWidget {
           ),
         );
       },
-      headerStyle: HeaderStyle(decoration:BoxDecoration(color: Colors.transparent)),
+      headerStyle:
+          HeaderStyle(decoration: BoxDecoration(color: Colors.transparent)),
       onEventLongTap: (events, date) {
         SnackBar snackBar = SnackBar(content: Text("on LongTap"));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
+      weekTitleFontSize: 10,
+      monthTitleFontSize: 20,
+      weekSubTitleFontSize: 7,
+      monthSubTitleFontSize: 17,
     );
   }
 }

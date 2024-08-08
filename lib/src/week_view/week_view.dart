@@ -242,6 +242,11 @@ class WeekView<T extends Object?> extends StatefulWidget {
 
   /// Flag to keep scrollOffset of pages on page change
   final bool keepScrollOffset;
+  final double weekTitleFontSize;
+  final double monthTitleFontSize;
+  final double weekSubTitleFontSize;
+  final double monthSubTitleFontSize;
+
 
   /// Main widget for week view.
   const WeekView({
@@ -303,6 +308,10 @@ class WeekView<T extends Object?> extends StatefulWidget {
     this.fullDayHeaderTitle = '',
     this.fullDayHeaderTextConfig,
     this.keepScrollOffset = false,
+    required this.weekTitleFontSize,
+    required this.monthTitleFontSize,
+    required this.weekSubTitleFontSize,
+    required this.monthSubTitleFontSize,
   })  : assert(!(onHeaderTitleTap != null && weekPageHeaderBuilder != null),
             "can't use [onHeaderTitleTap] & [weekPageHeaderBuilder] simultaneously"),
         assert((timeLineOffset) >= 0,
@@ -816,6 +825,10 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
         startDuration: startDuration,
         endDuration: endDuration,
         isWeekView: true,
+        weekTitleFontSize:widget.weekTitleFontSize,
+        weekSubTitleFontSize: widget.weekSubTitleFontSize,
+        monthTitleFontSize:widget.monthTitleFontSize ,
+        monthSubTitleFontSize:widget.monthSubTitleFontSize ,
       );
 
   /// Default view header builder. This builder will be used if

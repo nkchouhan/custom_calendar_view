@@ -200,6 +200,10 @@ class DefaultEventTile<T> extends StatelessWidget {
     required this.startDuration,
     required this.endDuration,
     required this.isWeekView,
+    this.weekTitleFontSize = 10,
+    this.monthTitleFontSize = 20,
+    this.weekSubTitleFontSize = 7,
+    this.monthSubTitleFontSize = 17,
   });
 
   final DateTime date;
@@ -210,13 +214,17 @@ class DefaultEventTile<T> extends StatelessWidget {
   final DateTime startDuration;
   final DateTime endDuration;
   final bool isWeekView;
+  final double weekTitleFontSize;
+  final double monthTitleFontSize;
+  final double weekSubTitleFontSize;
+  final double monthSubTitleFontSize;
 
   @override
   Widget build(BuildContext context) {
     if (events.isNotEmpty) {
       final event = events[0];
       return RoundedEventTile(
-          isWeekView:isWeekView,
+        isWeekView: isWeekView,
         isSmall: isSmall,
         primaryColor: primaryColor,
         borderRadius: BorderRadius.circular(10.0),
@@ -229,6 +237,10 @@ class DefaultEventTile<T> extends StatelessWidget {
         margin: EdgeInsets.all(2.0),
         titleStyle: event.titleStyle,
         descriptionStyle: event.descriptionStyle,
+        weekSubTitleFontSize: weekSubTitleFontSize,
+        weekTitleFontSize: weekTitleFontSize,
+        monthSubTitleFontSize: monthSubTitleFontSize,
+        monthTitleFontSize: monthTitleFontSize,
       );
     } else {
       return SizedBox.shrink();

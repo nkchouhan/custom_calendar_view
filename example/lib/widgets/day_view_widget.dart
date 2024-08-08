@@ -54,6 +54,10 @@ class DayViewWidget extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       )),
+      weekTitleFontSize: 10,
+      monthTitleFontSize: 20,
+      weekSubTitleFontSize: 7,
+      monthSubTitleFontSize: 17,
       showLiveTimeLineInAllDays: true,
       liveTimeIndicatorSettings: LiveTimeIndicatorSettings(
         color: Colors.redAccent,
